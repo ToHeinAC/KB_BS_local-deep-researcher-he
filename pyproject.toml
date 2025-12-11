@@ -1,0 +1,32 @@
+[project]
+name = "kb-bs-local-deep-researcher-he"
+version = "0.1.0"
+description = "Local Deep Researcher using LangChain Deep Agents"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "langchain",
+    "langchain-community",
+    "langchain-core",
+    "langgraph",
+    "streamlit",
+    "ollama",
+    "chromadb",
+    "langchain-chroma",
+    "langchain-huggingface",
+    "tavily-python",
+    "pydantic",
+    "networkx",
+    "matplotlib",
+    "sentence-transformers",
+    "pymupdf",
+    "nltk",
+    "ipython",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest",
+    "black",
+    "isort",
+]

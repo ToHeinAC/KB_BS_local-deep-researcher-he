@@ -1,0 +1,15 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+kb/
+wheels/
+*.egg-info
+.env
+
+# Virtual environments
+.venv
+
+# Temporary tunnel logs (contains temporary URLs)
+login/start-quick-tunnels_log.md
