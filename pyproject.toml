@@ -22,6 +22,8 @@ dependencies = [
     "pymupdf",
     "nltk",
     "ipython",
+    "sentencepiece>=0.2.1",
+    "vllm>=0.12.0",
 ]
 
 [tool.uv]

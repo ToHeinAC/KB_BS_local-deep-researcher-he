@@ -14,6 +14,7 @@ class DetectedLanguage(BaseModel):
 class Queries(BaseModel):
     queries: List[str]
 
+
 def clear_cuda_memory():
     """
     Clear CUDA memory cache to free up GPU resources between queries.
@@ -33,13 +34,16 @@ def clear_cuda_memory():
 def get_configured_llm_model(default_model='deepseek-r1:latest'):
     return os.environ.get('LLM_MODEL', default_model)
 
+
 def invoke_ollama(model, system_prompt, user_prompt, output_format=None):
     # Use the configured model if none is specified
     if model is None:
         model = get_configured_llm_model()
     
     print(f"  [DEBUG] Actually using model in invoke_ollama: {model}")
-        
+    
+    # All models now use Ollama backend
+    print(f"  [DEBUG] Using Ollama backend for {model}")
     messages = [
         {"role": "system", "content": system_prompt},
         {"role": "user", "content": user_prompt}
@@ -72,8 +76,8 @@ def invoke_ollama(model, system_prompt, user_prompt, output_format=None):
     except Exception as e:
         if "returned an empty response" in str(e):
             raise
-        print(f"  [ERROR] Exception in invoke_ollama with model {model}: {str(e)}")
-        raise Exception(f"Error invoking model {model}: {str(e)}") from e
+        print(f"  [ERROR] Exception in Ollama backend with model {model}: {str(e)}")
+        raise Exception(f"Error invoking Ollama model {model}: {str(e)}") from e
 
 def parse_output(text):
     """
