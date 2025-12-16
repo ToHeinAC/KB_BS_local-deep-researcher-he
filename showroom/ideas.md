@@ -1,13 +1,21 @@
+# Software Requirements Specification (SRS)
+
+## Scope & goals:
+The scope is tho build a fully locally runnable deep researcher using langchain deep agents framework. 
+To do this, a stepwise approach is used. 
+For now, the first step is to use https://github.com/langchain-ai/deepagents-quickstarts/tree/main/deep_research as a central starting point and in the first step that is to be implemented now, the deep researcher must using a fully local LLM and be able to do a web search and answer a question based on that search. The deep researcher shall be used via a simple streamlit GUI by the user. 
+The GUI as well as the deep researcher will be updated by subsequent steps not yet in the scope.
+In the end, i.e. in the final step, the functionalities shall be close to those in https://github.com/ToHeinAC/KB_BS_local-rag-he and there app_v2_1g.py. This means essentially that the deep researcher must be able to connect to a local vector database and be able to do agentic research based on an initial user query which is concretized by an initial human-in-the-loop (HITL) process. This initial HITL process must be able to understand the humans query and make deep questions by the deep researcher to be answered by the human in order to get a better understanding of the topic, i.e. an optimized context, to be more precise in the search for information. 
 
 ## deepagents-quickstarts/deep_research github repo
-
 https://github.com/langchain-ai/deepagents-quickstarts/tree/main/deep_research
 
 ## Deepagent docs
 https://docs.langchain.com/oss/python/deepagents/overview
 
-
-
+## Very good resource video for exactly doing this  
+https://www.youtube.com/watch?v=geTtqyFnyHA
+### Transscript
 In this video, we'll use deep agents to
 0:02
 create a deep research example. You can
@@ -593,3 +601,50 @@ prompts. So this is a full endto-end
 example of how to build deep researcher
 10:50
 on top of deep agents. Hope you enjoyed.
+
+### In scope:
+- Deep researcher 
+- fully local implementation using gpt-oss:20b from ollama
+- nice streamlit app web interface that also adresses the to-do list, its status and also basic intermediary results
+
+### Out of scope (for now, but shorter term needs in the following iterations):
+- enable a local vector database retireval (see https://github.com/ToHeinAC/KB_BS_local-rag-he and there app_v2_1g.py; teh local vector database as the knowledge base is already there and can be used)
+- display of all relevant preliminary results (use expanders)
+
+### Out of scope (for many following iterations):
+- long term memory
+- user profile and logins
+- session management
+- vector database generation, management etc. (this is done elsewhere for now)
+
+## User stories:
+- As the end-user I want to have a GUI for a good user experience tho work with the deep researcher in order to deploy the solution in the end to less technically experienced users. 
+- As the end-user, In the GUI, I want to be able to see the current researcher step and the previous step to be able to get a good sense of what is happening behind the scenes.  
+- As the software architect, behind the scenes, I want the deep researcher to be able to verify the most important steps in the workflow (i.e. reflection) in order to guarantee the highest quality of the final answer generation. Moreover, reflections shall be used to check if the quality of the answer has a good level.
+- As the software architect, behind the scenes, I want the deep researcher to be able stop the deep research loops after a maximum number of attempts in order to prevent infinite loops. When this happens, this must be displayed in the GUI in order to let the end-user know if there could be a quality issue in case the maximum number of attemps was reached.
+
+## Functional requirements:
+- A streamlit application file taking into account all the GUI-specific user stories
+- A backend that implements the deep researcher but in a way that it can be used by the streamlit app
+
+## Non‑functional requirements:
+- all files must be in the /showroom folder
+- fully rely the example https://github.com/langchain-ai/deepagents-quickstarts/tree/main/deep_research and the deepagents framework https://github.com/langchain-ai/deepagents
+
+
+### tech constraints:
+- The LLM must be fully local, use gpt-oss:20b from ollama (already locally installed/available)
+- You must implement the researcher strictly using langchains deep agents framework https://docs.langchain.com/oss/python/deepagents/overview#deep-agents-overview. Make use at least of the core capabilities "Planning and task decomposition", "Context management" and "Subagent spawning", that is use the Deep Agents Middleware architecture
+- Use uv for virtual environment management and running the researcher
+- make sure that version control is used (github/ToHeinAC/KB_BS_local-deep-researcher-he)
+- make sure that a nice app for runnig is there (must be streamlit, the port should be 8508)
+
+## Success criteria: 
+- The implementation is the same or at least extreamly close to https://github.com/langchain-ai/deepagents-quickstarts/tree/main/deep_research
+- The solution is compatible with the local LLM which is gpt-oss:20b from ollama
+- The frontend GUI is a streamlit app
+- Each implementation step is well documented
+- The tech constraints are fulfilled
+- The core capabilities of the deep agents framework as stated in the tech constraints are used
+- The functional requirements are fulfilled
+- The non-functional requirements are fulfilled

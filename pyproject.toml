@@ -3,7 +3,7 @@ name = "kb-bs-local-deep-researcher-he"
 version = "0.1.0"
 description = "Local Deep Researcher using LangChain Deep Agents"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = [
     "langchain",
     "langchain-community",
@@ -11,6 +11,7 @@ dependencies = [
     "langgraph",
     "streamlit",
     "ollama",
+    "langchain-ollama",
     "chromadb",
     "langchain-chroma",
     "langchain-huggingface",
@@ -24,6 +25,7 @@ dependencies = [
     "ipython",
     "sentencepiece>=0.2.1",
     "vllm>=0.12.0",
+    "deepagents",
 ]
 
 [tool.uv]
